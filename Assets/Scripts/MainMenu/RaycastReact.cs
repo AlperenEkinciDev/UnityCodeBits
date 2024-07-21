@@ -6,6 +6,7 @@ public class RaycastReact : MonoBehaviour
 {
     [SerializeField] List<Transform> messageTarget;
 
+    //Targets Junction
     public List<Transform> GetMessageTarget()
     {
         return messageTarget;

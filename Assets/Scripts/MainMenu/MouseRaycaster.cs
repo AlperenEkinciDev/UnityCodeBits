@@ -17,6 +17,7 @@ public class MouseRaycaster : MonoBehaviour
         }
     }
 
+    //Broadcast Message To Target
     private void ActOnHit()
     {
         if (mouseRayHit.transform.TryGetComponent<RaycastReact>(out raycastReact))
@@ -29,7 +30,8 @@ public class MouseRaycaster : MonoBehaviour
             }
         }
     }
-    
+
+    //Send A Raycast Through Camera Towards Mouse Projection
     private bool CheckRaycast()
     {
         Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
