@@ -6,8 +6,8 @@ public class VoxelManipulator : MonoBehaviour
 {
     [Header("Voxel Manipulator Communication")]
     [SerializeField] CustomInputManager customInputManager;
-
-    int brushSize = 3;
+    [Header("Voxel Manipulator Settings")]
+    [SerializeField][Range(3, 8)] int brushSize = 3;
     RaycastHit hit;
 
     private void Start()
@@ -19,11 +19,12 @@ public class VoxelManipulator : MonoBehaviour
     {
         while (true)
         {
-            if (customInputManager.GetCustomInputValue("Interact") > 0.9f)
+            if (customInputManager.GetCustomInputValue("Modify") > 0.9f)
             {
                 LayerMask layerMask = LayerMask.GetMask("Terrain");
 
-                if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, 16, layerMask, QueryTriggerInteraction.Ignore))
+                Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(mouseRay, out hit, 96, layerMask, QueryTriggerInteraction.Ignore))
                 {
                     if (hit.transform.parent.CompareTag("Terrain"))
                     {
@@ -31,25 +32,35 @@ public class VoxelManipulator : MonoBehaviour
                         MapDisplay mapDisplay = hit.transform.parent.GetComponent<MapDisplay>();
 
                         int CenterChunkNum = int.Parse(hit.collider.name.Split(' ')[1]);
-                        int[] chunkArray = new int[9];
+                        int[] chunkArray = new int[brushSize * brushSize];
 
 
-                        for (int i = 0; i < 9; i++)
+                        for (int i = 0; i < brushSize * brushSize; i++)
                         {
                             chunkArray[i] = CenterChunkNum - (mapGenerator.densityMapWidth / mapGenerator.chunkSize + 1) + (i / 3) * (mapGenerator.densityMapWidth / mapGenerator.chunkSize) + i % 3;
                         }
-                        for (int i = 0; i < 9; i++)
+                        for (int i = 0; i < brushSize * brushSize; i++)
                         {
-                            mapDisplay.DrawVoxel(mapGenerator.chunkTransforms[chunkArray[i]], VoxelGenerator.GenerateTerrainVoxel(VoxelGenerator.ManipulateVoxelAtPosition(hit, mapGenerator.noiseMap3D, mapGenerator.voxelObjectSize, mapGenerator.detailMultiplier, brushSize, 0.0f), mapGenerator.voxelObjectSize / mapGenerator.detailMultiplier, mapGenerator.voxelThreshold, mapGenerator.chunkSize * mapGenerator.detailMultiplier, chunkArray[i]));
+                            Transform chunkT = null;
+                            try
+                            {
+                                chunkT = mapGenerator.chunkTransforms[chunkArray[i]];
+                            }
+                            catch
+                            {
+                                continue;
+                            }
+                            mapDisplay.DrawVoxel(chunkT, VoxelGenerator.GenerateTerrainVoxel(VoxelGenerator.ManipulateVoxelAtPosition(hit, mapGenerator.noiseMap3D, mapGenerator.voxelObjectSize, mapGenerator.detailMultiplier, brushSize, 0.0f), mapGenerator.voxelObjectSize / mapGenerator.detailMultiplier, mapGenerator.voxelThreshold, mapGenerator.chunkSize * mapGenerator.detailMultiplier, chunkArray[i]));
                         }
                     }
                 }
             }
-            else if (customInputManager.GetCustomInputValue("Modify") > 0.9f)
+            else if (customInputManager.GetCustomInputValue("Interact") > 0.9f)
             {
                 LayerMask layerMask = LayerMask.GetMask("Terrain");
 
-                if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, 16, layerMask, QueryTriggerInteraction.Ignore))
+                Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(mouseRay, out hit, 96, layerMask, QueryTriggerInteraction.Ignore))
                 {
                     if (hit.transform.parent.CompareTag("Terrain"))
                     {
@@ -57,16 +68,25 @@ public class VoxelManipulator : MonoBehaviour
                         MapDisplay mapDisplay = hit.transform.parent.GetComponent<MapDisplay>();
 
                         int CenterChunkNum = int.Parse(hit.collider.name.Split(' ')[1]);
-                        int[] chunkArray = new int[9];
+                        int[] chunkArray = new int[brushSize * brushSize];
 
 
-                        for (int i = 0; i < 9; i++)
+                        for (int i = 0; i < brushSize * brushSize; i++)
                         {
                             chunkArray[i] = CenterChunkNum - (mapGenerator.densityMapWidth / mapGenerator.chunkSize + 1) + (i / 3) * (mapGenerator.densityMapWidth / mapGenerator.chunkSize) + i % 3;
                         }
-                        for (int i = 0; i < 9; i++)
+                        for (int i = 0; i < brushSize * brushSize; i++)
                         {
-                            mapDisplay.DrawVoxel(mapGenerator.chunkTransforms[chunkArray[i]], VoxelGenerator.GenerateTerrainVoxel(VoxelGenerator.ManipulateVoxelAtPosition(hit, mapGenerator.noiseMap3D, mapGenerator.voxelObjectSize, mapGenerator.detailMultiplier, brushSize, 1.0f), mapGenerator.voxelObjectSize / mapGenerator.detailMultiplier, mapGenerator.voxelThreshold, mapGenerator.chunkSize * mapGenerator.detailMultiplier, chunkArray[i]));
+                            Transform chunkT = null;
+                            try
+                            {
+                                chunkT = mapGenerator.chunkTransforms[chunkArray[i]];
+                            }
+                            catch
+                            {
+                                continue;
+                            }
+                            mapDisplay.DrawVoxel(chunkT, VoxelGenerator.GenerateTerrainVoxel(VoxelGenerator.ManipulateVoxelAtPosition(hit, mapGenerator.noiseMap3D, mapGenerator.voxelObjectSize, mapGenerator.detailMultiplier, brushSize, 1.0f), mapGenerator.voxelObjectSize / mapGenerator.detailMultiplier, mapGenerator.voxelThreshold, mapGenerator.chunkSize * mapGenerator.detailMultiplier, chunkArray[i]));
                         }
                     }
                 }
