@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WeaponsScene.unity
     guid: f5c80d0e8fb7dca45a1bef476516cef5
+  - enabled: 1
+    path: Assets/Scenes/VoxelScene.unity
+    guid: 9a6b5544f482fb540ab14129b190bfbf
   m_configObjects: {}

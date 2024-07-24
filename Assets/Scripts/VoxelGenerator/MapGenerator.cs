@@ -42,6 +42,7 @@ public class MapGenerator : MonoBehaviour
     [HideInInspector]public float[,,] noiseMap3D;
 
     
+    [HideInInspector]
     public Transform[] chunkTransforms;
     public int chunkSize;//ONLY USE 4, 8 AND 16
 

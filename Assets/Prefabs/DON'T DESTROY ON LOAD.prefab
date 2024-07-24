@@ -152,7 +152,7 @@ MonoBehaviour:
   - name: Modify
     keyCode_Positive: 324
     keyCode_Negative: 0
-    alternativeKeyCode_Positive: 304
+    alternativeKeyCode_Positive: 0
     alternativeKeyCode_Negative: 0
     isToggle: 1
     valueChangePerSecond: 10
@@ -169,6 +169,22 @@ MonoBehaviour:
     keyCode_Positive: 304
     keyCode_Negative: 0
     alternativeKeyCode_Positive: 113
+    alternativeKeyCode_Negative: 0
+    isToggle: 1
+    valueChangePerSecond: 10
+    value: 0
+  - name: Reset
+    keyCode_Positive: 114
+    keyCode_Negative: 0
+    alternativeKeyCode_Positive: 0
+    alternativeKeyCode_Negative: 0
+    isToggle: 1
+    valueChangePerSecond: 10
+    value: 0
+  - name: Randomize
+    keyCode_Positive: 306
+    keyCode_Negative: 0
+    alternativeKeyCode_Positive: 0
     alternativeKeyCode_Negative: 0
     isToggle: 1
     valueChangePerSecond: 10

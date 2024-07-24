@@ -42,10 +42,16 @@ public class CameraOrbit : MonoBehaviour
             float horizontalInput = -Input.GetAxis("Mouse Y") * orbitSpeed * Time.deltaTime;
             float verticalInput = Input.GetAxis("Mouse X") * orbitSpeed * Time.deltaTime;
 
-            float x = horizontal.localEulerAngles.x + horizontalInput;
-            float y = vertical.localEulerAngles.y + verticalInput;
-            vertical.localEulerAngles = new Vector3(0.0f, y, 0.0f);
-            horizontal.localEulerAngles = new Vector3(x, 0.0f, 0.0f);
+            if (vertical)
+            {
+                float y = vertical.localEulerAngles.y + verticalInput;
+                vertical.localEulerAngles = new Vector3(0.0f, y, 0.0f);
+            }
+            if (horizontal)
+            {
+                float x = horizontal.localEulerAngles.x + horizontalInput;
+                horizontal.localEulerAngles = new Vector3(x, 0.0f, 0.0f);
+            }
     }
 
     void Handle()
@@ -62,7 +68,8 @@ public class CameraOrbit : MonoBehaviour
 
         if (camera.orthographic)
         {
-            camera.orthographicSize += zoomInput;
+            camera.orthographicSize -= zoomInput;
+            camera.orthographicSize = Mathf.Clamp(camera.orthographicSize, 0.1f, Mathf.Infinity);
         }
         else
         {
