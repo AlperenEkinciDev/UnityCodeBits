@@ -33,6 +33,11 @@ public class SceneManagerObject : MonoBehaviour
         Application.Quit();
     }
 
+    public void ReturnToTheMainMenu()
+    {
+        LoadScene(0);
+    }
+
     IEnumerator LoadSequence(int i)
     {
 

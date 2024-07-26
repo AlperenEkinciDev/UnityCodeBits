@@ -11,9 +11,7 @@ public class Explosion : Effect
     private void Start()
     {
         thisProjectile = this.transform.GetComponent<Projectile>();
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
+        PlaySFX(instantiateSFXName);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,6 +27,8 @@ public class Explosion : Effect
             {
                 GameObject.Instantiate(particleTransform, this.transform.position, this.transform.rotation);
             }
+
+            PlaySFX(destroySFXName);
             Destroy(this.transform.gameObject);
         }
     }

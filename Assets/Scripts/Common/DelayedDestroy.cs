@@ -16,6 +16,14 @@ public class DelayedDestroy : MonoBehaviour
         }
     }
 
+    public void RestartCoroutine()
+    {
+        if (!Mathf.Approximately(seconds, -1f))
+        {
+            StartCoroutine(DelayedDestroyCoroutine(seconds));
+        }
+    }
+
     public IEnumerator DelayedDestroyCoroutine(float seconds)
     {
         yield return new WaitForSeconds(seconds);

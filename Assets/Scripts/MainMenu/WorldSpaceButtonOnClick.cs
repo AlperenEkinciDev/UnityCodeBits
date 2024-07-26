@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class WorldSpaceButtonOnClick : MonoBehaviour
 {
+    [HideInInspector]
+    public enum VariableType {Int, Float, String};
+
     [System.Serializable]
     public struct MessageTarget
     {
         public Transform messageTarget;
         public string message;
+        public VariableType variableType;
         [Space]
         public bool sendVariable;
-        public int variable;
+        public int variableInt;
+        public float variableFloat;
+        public string variableString;
     }
 
 
@@ -34,9 +40,16 @@ public class WorldSpaceButtonOnClick : MonoBehaviour
 
     private void CheckInput()
     {
-        if (customInputManager.GetCustomInputValue("Interact") > 0.5f && worldSpaceButton.isMouseHovering)
+        if (customInputManager)
         {
-            Interact();
+            if (customInputManager.GetCustomInputValue("Interact") > 0.5f && worldSpaceButton.isMouseHovering)
+            {
+                Interact();
+            }
+        }
+        else
+        {
+            customInputManager = GameObject.FindGameObjectWithTag("InputManager").GetComponent<CustomInputManager>();
         }
     }
 
@@ -47,7 +60,9 @@ public class WorldSpaceButtonOnClick : MonoBehaviour
             MessageTarget tempTarget = messageTargetsList[i];
             if (tempTarget.sendVariable)
             {
-                tempTarget.messageTarget.BroadcastMessage(tempTarget.message, tempTarget.variable);
+                if(tempTarget.variableType == VariableType.Int) tempTarget.messageTarget.BroadcastMessage(tempTarget.message, tempTarget.variableInt);
+                else if (tempTarget.variableType == VariableType.Float) tempTarget.messageTarget.BroadcastMessage(tempTarget.message, tempTarget.variableFloat);
+                else if (tempTarget.variableType == VariableType.String) tempTarget.messageTarget.BroadcastMessage(tempTarget.message, tempTarget.variableString);
             }
             else
             {

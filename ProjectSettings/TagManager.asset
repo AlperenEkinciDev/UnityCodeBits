@@ -8,6 +8,9 @@ TagManager:
   - TargetsParent
   - Target
   - Terrain
+  - DontDestroy
+  - SceneManager
+  - AudioManager
   layers:
   - Default
   - TransparentFX

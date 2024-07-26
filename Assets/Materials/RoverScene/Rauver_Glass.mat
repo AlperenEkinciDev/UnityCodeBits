@@ -107,9 +107,9 @@ Material:
     - Vector1_179cd303db4a4da38f492e3efc32d05e: 0
     - Vector1_344dc664ae504764aa4a84b0b324e279: 1.92
     - Vector1_39b51c63f41848baae12169e372595eb: 0.58
-    - Vector1_78e87ebad57944e285d4ed812ff4dee2: 4.82
-    - Vector1_f89d782129e44c5bad722ce2151326f6: 0.32
-    - Vector1_fa616a79df9b42ada09846ff5df8b5c5: 72.3
+    - Vector1_78e87ebad57944e285d4ed812ff4dee2: 2.09
+    - Vector1_f89d782129e44c5bad722ce2151326f6: 1
+    - Vector1_fa616a79df9b42ada09846ff5df8b5c5: 100
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
@@ -136,7 +136,7 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 0
     - _Shininess: 0
-    - _Smoothness: 1
+    - _Smoothness: 0.74
     - _SmoothnessSource: 0
     - _SmoothnessTextureChannel: 0
     - _SpecSource: 0
@@ -148,8 +148,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 0
     m_Colors:
-    - _BaseColor: {r: 0.2988163, g: 0.37154922, b: 0.8018868, a: 0.3764706}
+    - _BaseColor: {r: 0.64520293, g: 0.6804249, b: 0.764151, a: 0}
     - _Color: {r: 0.3497686, g: 0.38152915, b: 0.5660378, a: 0.3764706}
-    - _EmissionColor: {r: 0.16509432, g: 0.33503267, b: 1, a: 1}
+    - _EmissionColor: {r: 0.25, g: 0.40140855, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []

@@ -11,6 +11,7 @@ public class VoxelManipulator : MonoBehaviour
     [SerializeField][Range(3, 8)] int brushSize = 3;
     [SerializeField] float movementThreshold = 1f;
     CustomInputManager customInputManager;
+    AudioManager audioManager;
     RaycastHit hit;
     bool isFirstClick = true;
     bool isInGenerationProcess = false;
@@ -18,6 +19,7 @@ public class VoxelManipulator : MonoBehaviour
     private void Start()
     {
         customInputManager = GameObject.FindGameObjectWithTag("InputManager").GetComponent<CustomInputManager>();
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
     }
 
     private void Update()
@@ -60,8 +62,8 @@ public class VoxelManipulator : MonoBehaviour
         {
             if (hit.transform.parent.CompareTag("Terrain"))
             {
-                if (isModify && isMoving || isModify && isFirstClick) { Draw3D(0.0f); isFirstClick = false; }
-                else if (isInteract && isMoving || isInteract && isFirstClick) { Draw3D(1.0f); isFirstClick = false; }
+                if (isModify && isMoving || isModify && isFirstClick) { Draw3D(0.0f); isFirstClick = false;}
+                else if (isInteract && isMoving || isInteract && isFirstClick) { Draw3D(1.0f); isFirstClick = false;}
                 else if (isMoving || !isModify && !isInteract) isFirstClick = true;
             }
         }

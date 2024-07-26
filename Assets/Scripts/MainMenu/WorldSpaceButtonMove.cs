@@ -12,14 +12,14 @@ public class WorldSpaceButtonMove : MonoBehaviour
     private bool isMouseHovering = false;
     private bool isMouseHoveringLastFrame = false;
     private float stateChangeTime;
-    private Vector3 startPos;
+    private Vector3 startLocalPos;
     private Vector3 targetPos;
     private float popUpPercentage;
 
     private void Start()
     {
-        startPos = this.transform.position;
-        targetPos = startPos + popUpMovementAmount;
+        startLocalPos = this.transform.localPosition;
+        targetPos = startLocalPos + popUpMovementAmount;
         stateChangeTime = -popUpDuration;
     }
 
@@ -48,6 +48,6 @@ public class WorldSpaceButtonMove : MonoBehaviour
     void MoveTowardsTarget()
     {
         popUpPercentage = EaseMethods.EaseOutBounce(Mathf.Clamp((Time.time - stateChangeTime) / popUpDuration, 0.0f, 1.0f)); if (!isMouseHovering) { popUpPercentage = 1 - popUpPercentage; }
-        this.transform.position = startPos * (1 - popUpPercentage) + (targetPos * popUpPercentage);
+        this.transform.localPosition = startLocalPos * (1 - popUpPercentage) + (targetPos * popUpPercentage);
     }
 }
