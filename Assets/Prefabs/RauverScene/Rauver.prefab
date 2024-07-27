@@ -103,7 +103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6034207931704883017}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Rauver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -761,7 +761,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bc7a1f79a73ba224ca25e902e4d2cea8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.75
+      value: 1.679
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bc7a1f79a73ba224ca25e902e4d2cea8, type: 3}
       propertyPath: m_LocalRotation.w

@@ -5858,7 +5858,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6777423304168085028, guid: 33f66f5251f5cf94093815600201616e, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: Rauver
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
